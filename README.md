@@ -1,55 +1,35 @@
-# iajaykumar.live — design handoff
+# iajaykumar.live
 
-This repository is a **no-code baseline** for Ajay Kumar's creator-led personal website. It contains the visual assets, verified content links, information architecture, and motion specifications. No application source, Firebase configuration, or deployment setup has been added yet.
+Ajay Kumar's personal site: engineer, builder and teacher. A static Astro site
+styled by the Coral Studio design system and deployed to Firebase Hosting.
 
-## Start here
+## Quick start
 
-**Design system:** [`design-system/`](design-system/README.md) — Coral Studio, the source of truth for tokens, components, motion, and page composition. View it with `python3 -m http.server 8791` and open `http://localhost:8791/design-system/`. Claude sessions load it through the `coral-studio` skill in `.claude/skills/`. The docs below are the original handoff it was built from.
+```bash
+npm ci
+npm run dev       # localhost:4321
+npm test          # CSV parser tests
+npm run build     # tokens + astro build + dist audit (scripts/check-dist.mjs)
+npm run deploy    # build + firebase deploy --only hosting (owner only)
+```
 
-1. [Project brief](docs/PROJECT_BRIEF.md) — audience, story, scope, and design direction.
-2. [Design system](docs/DESIGN_SYSTEM.md) — palette, typography, studio graphics, and components.
-3. [Motion system](docs/MOTION_SYSTEM.md) — opening sequence, props, interactions, and reduced-motion behavior.
-4. [Page blueprints](docs/PAGE_BLUEPRINTS.md) — page-by-page layout and responsive behavior.
-5. [Content and sources](docs/CONTENT_AND_SOURCES.md) — verified identity, articles, projects, and source policy.
-6. [Build handoff](docs/BUILD_HANDOFF.md) — intended implementation structure and acceptance checklist.
+`npm run preview` serves the built `dist/`. The design system viewer runs with
+`python3 -m http.server 8791` at `http://localhost:8791/design-system/`.
 
 ## Repository map
 
 ```text
-content/
-  articles.csv                 Verified Medium article index
-  projects.csv                 Featured project candidates
-  talks.csv                    Talk titles and source status
-  videos.csv                   Reserved verified video index
-  courses.csv                  Reserved course index
-  audio.csv                    Reserved future audio index
-src/
-  README.md                    Framework-neutral source directory map
-  components/                 Reserved for shared UI pieces
-  pages/                      Reserved for page composition
-  styles/                     Reserved for tokens and layout styles
-  content/                    Reserved for content adapters
-design-system/
-  index.html                   Viewer page (renders the files below)
-  README.md, Motion.md, Pages.md   Brand book, motion, page blueprints
-  tokens.json                  Colors (dark + light), type, spacing, radius, layout, motion
-  components/                  11 components: README, preview, reference bundle + types
-  assets/                      Usage notes for public/assets groups
-  design-system.json           Artifact index (asset id map)
-.claude/skills/coral-studio/   Claude skill: how to use and change the design system
-docs/
-  PROJECT_BRIEF.md
-  DESIGN_SYSTEM.md
-  MOTION_SYSTEM.md
-  PAGE_BLUEPRINTS.md
-  CONTENT_AND_SOURCES.md
-  BUILD_HANDOFF.md
-public/assets/
-  README.md                    Asset manifest and provenance
-  portraits/ajay-avatar.png    Transparent illustrated avatar
-  illustrations/creator-studio.png   Full-quality studio source
-  illustrations/creator-studio.jpg   Web-ready hero image
-  props/                            Microphone, camera, lesson graphics
+src/            Astro pages, layout, components, styles and content adapters
+content/        Editorial CSVs (verified URLs only)
+design-system/  Coral Studio: tokens.json, components, motion and page rules
+public/assets/  Illustrations, web/ WebP derivatives, og-card.jpg
+scripts/        tokens.mjs, images.mjs, check-dist.mjs, csv.test.mjs
+docs/           Original design and content handoff
+.claude/        Claude Code settings, hooks and project skills
 ```
 
-The future builder should add application source inside `src/`, plus app configuration, tests, and Firebase Hosting files after choosing the framework. Keep content data and public assets in their existing locations unless the framework requires a documented move.
+## Further reading
+
+- [`CLAUDE.md`](CLAUDE.md) — contributor contract, checks and invariants.
+- [`design-system/README.md`](design-system/README.md) — the brand book.
+- [`docs/`](docs/) — [brief](docs/PROJECT_BRIEF.md), [content and sources](docs/CONTENT_AND_SOURCES.md), [build handoff](docs/BUILD_HANDOFF.md).

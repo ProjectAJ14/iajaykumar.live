@@ -2,6 +2,8 @@
 
 ## Delivery boundary
 
+**Update:** the Astro implementation now exists on branch `feat/site-build` (`src/`, `scripts/`, `firebase.json`). The rest of this document is the original handoff and is kept as history; the current contributor contract is the root [`CLAUDE.md`](../CLAUDE.md).
+
 This repository contains no site source code. Build from the [project brief](PROJECT_BRIEF.md), [design system](DESIGN_SYSTEM.md), [page blueprints](PAGE_BLUEPRINTS.md), and [motion system](MOTION_SYSTEM.md). The intended Firebase project is `iajaykumarlive` and custom domain is `iajaykumar.live`; verify both before deployment or DNS changes.
 
 ## Reserved structure
