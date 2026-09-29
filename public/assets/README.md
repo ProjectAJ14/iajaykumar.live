@@ -1,0 +1,20 @@
+# Asset manifest — Coral Studio
+
+| Asset | Placement | Source / status |
+| --- | --- | --- |
+| `portraits/ajay-avatar.png` | Home hero and About | Built-in imagegen illustration from Ajay's user-supplied `AJAY.HEIC`; recognizable face, smile, pointing gesture, and coral shirt retained. Transparent PNG. |
+| `illustrations/creator-studio.png` | Quality master of hero setting | Original generated studio illustration with acoustic panels and warm coral light. |
+| `illustrations/creator-studio.jpg` | Web-ready hero setting | JPEG conversion of studio master. |
+| `props/studio-microphone.png` | Speaking and possible future audio | Original flat 2D illustrated prop; transparent. |
+| `props/video-camera.png` | Watch / YouTube | Original flat 2D illustrated prop; transparent. |
+| `props/lesson-cards.png` | Learn / eventual courses | Original flat 2D illustrated prop; transparent. |
+
+The original HEIC remains in Ajay's iCloud location and is not copied into the public asset directory. All props are separate static layers for future motion. Text, links, waveforms, progress indicators, and status labels belong in the eventual site implementation, not in images.
+
+## Generation prompts and mode
+
+All final illustrations used the **built-in imagegen tool**. The avatar prompt was: “Create an original transparent editorial illustration of the man in Ajay's photo, preserving his recognizable face, hairstyle, beard, warm smile, coral-orange T-shirt, and pointing gesture; no text, logo, extra people, or watermark.”
+
+The studio prompt was: “Create an original wide modern creator-studio backdrop with dark ink-navy acoustic panels and warm coral-orange stage light on the right, keeping the left quiet for HTML copy; no people, text, microphone, stars, or galaxy.”
+
+The prop prompts specified isolated transparent, flat 2D editorial illustrations of a broadcast microphone, a video camera, and a stack of three lesson cards, all in dark navy, cream, and coral with no text, logos, or photographic realism.
