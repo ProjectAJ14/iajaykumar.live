@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import { LINKS } from '../content';
+import { ext } from '../components/ext';
+---
+<Base title="About" description="Ajay Kumar is a full-stack engineer who builds products and shares what they taught him through talks, videos, writing and hands-on learning." current="About">
+  <div class="container page-head about">
+    <div class="about-copy">
+      <h1 class="page-title">About</h1>
+      <div class="reading">
+        <p>I'm Ajay Kumar, a full-stack engineer. I build products end to end: web front ends in React and TypeScript, services in Java and Spring Boot, the cloud they run on, and the mobile apps people hold in their hands.</p>
+        <p>Flutter is where I have gone deepest: it is the centre of my open-source and community work, and of most of <a href="/writing">my writing</a>.</p>
+        <p>Every project leaves me with something worth passing on, so I share it: technical sessions and workshops, articles, and <a href={LINKS.youtube} {...ext(LINKS.youtube)}>my YouTube channel</a>. This site is the home for that teaching, and for the products behind it.</p>
+      </div>
+      <blockquote class="pull-quote"><p>Build it, then teach what it taught you.</p></blockquote>
+      <div class="about-actions">
+        <Button href="/speaking">See speaking topics</Button>
+        <Button href="/projects" variant="secondary">Browse projects</Button>
+        <Button href="/writing" variant="ghost" arrow>Read my writing</Button>
+      </div>
+    </div>
+    <img class="about-avatar" src="/assets/web/ajay-avatar.webp" width="630" height="840" alt="Illustration of Ajay Kumar smiling in a coral-orange shirt and pointing left." />
+  </div>
+</Base>
+
+<style>
+  .about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 360px); gap: var(--space-8); align-items: start; }
+  .about .reading { margin-top: var(--space-4); }
+  .pull-quote p { margin: 0; }
+  .about-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .about-avatar { width: 100%; border-radius: var(--radius-card-lg); background: var(--surface-panel); position: sticky; top: calc(var(--header-height) + var(--space-4)); }
+  @media (max-width: 767px) {
+    .about { grid-template-columns: 1fr; gap: var(--space-4); }
+    .about-avatar { position: static; max-width: 280px; }
+  }
+</style>

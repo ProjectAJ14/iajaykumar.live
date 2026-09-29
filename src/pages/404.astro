@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+---
+<Base title="Page not found" description="This page does not exist on iajaykumar.live.">
+  <div class="container page-head section">
+    <p class="cs-eyebrow">404</p>
+    <h1 class="page-title">Page not found</h1>
+    <p class="page-lede">This page may have moved, or the link had a typo. Head back home, or pick up something to read.</p>
+    <div class="actions">
+      <Button href="/">Go to the home page</Button>
+      <Button href="/writing" variant="secondary">Browse writing</Button>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
+</style>

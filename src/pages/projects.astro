@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects, LINKS } from '../content';
+import { ext } from '../components/ext';
+
+const groups = ['Products and tools', 'Open source and community'].map((name) => ({ name, items: projects.filter((p) => p.group === name) }));
+---
+<Base title="Projects" description="Products, tools and open-source work Ajay Kumar builds and contributes to, each told by the problem it solves." current="Projects">
+  <header class="container page-head">
+    <h1 class="page-title">Projects</h1>
+    <p class="page-lede">The products and open-source work behind what I teach. Each one starts with the problem it solves; the source is linked so you can see how.</p>
+  </header>
+
+  {groups.filter((g) => g.items.length).map((g, i) => (
+    <section class="container section" aria-labelledby={`group-${i}`}>
+      <div class="section-head"><h2 class="section-title" id={`group-${i}`}>{g.name}</h2></div>
+      <div class="grid-2">
+        {g.items.map((p) => <ProjectCard name={p.name} problem={p.summary} role={p.role} links={p.links} />)}
+      </div>
+    </section>
+  ))}
+
+  <section class="container section">
+    <p class="cs-muted">More repositories live on <a class="inline-link" href={LINKS.github} {...ext(LINKS.github)}>my GitHub profile</a>.</p>
+  </section>
+</Base>

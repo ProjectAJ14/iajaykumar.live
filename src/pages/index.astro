@@ -1,0 +1,128 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Button from '../components/Button.astro';
+import Arrow from '../components/Arrow.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import MediaFeature from '../components/MediaFeature.astro';
+import TalkCard from '../components/TalkCard.astro';
+import LearningPathCard from '../components/LearningPathCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { articles, projects, talks, videos, LINKS } from '../content';
+import { learningPaths, speakingTopics } from '../content/paths';
+
+// Featured teaching: a curated video once videos.csv has one, otherwise a real featured article.
+const featuredVideo = videos.find((v) => v.featured);
+const featuredArticle = articles.find((a) => a.featured) ?? articles[0];
+const latest = articles.filter((a) => featuredVideo || a !== featuredArticle).slice(0, 4);
+
+const featuredWork = projects.filter((p) => p.name === 'Eklavya' || p.name === 'Morph');
+const otherWork = projects.filter((p) => !featuredWork.includes(p));
+---
+<Base title="Home" description="Ajay Kumar is a full-stack engineer sharing practical lessons through talks, videos, writing, and hands-on learning.">
+  <Hero
+    title="I build software, then share what the journey taught me."
+    accentWord="journey"
+    eyebrow="Ajay Kumar · engineer, builder, and teacher"
+    lede="Full-stack engineer sharing practical lessons through talks, videos, writing, and hands-on learning."
+    primary={{ label: 'Watch on YouTube', href: LINKS.youtube }}
+    secondary={{ label: 'Invite me to speak', href: '/speaking' }}
+    avatarSrc="/assets/web/ajay-avatar.webp"
+    backdropSrc="/assets/web/creator-studio.webp"
+    propSrc="/assets/web/video-camera.webp"
+  />
+
+  <div class="container">
+    <section class="section" aria-labelledby="featured-title">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title" id="featured-title">Featured teaching</h2>
+          <p class="cs-muted">The lesson I would start with right now.</p>
+        </div>
+      </div>
+      <div class="grid-2">
+        {featuredVideo
+          ? <MediaFeature href={featuredVideo.href} title={featuredVideo.title} topic={featuredVideo.topic} duration={featuredVideo.duration} thumbnailSrc={featuredVideo.thumbnail} />
+          : <ArticleCard href={featuredArticle.href} title={featuredArticle.title} topic={featuredArticle.topic} date={featuredArticle.date} />}
+        <MediaFeature href={LINKS.youtube} title="Videos on my YouTube channel" topic="YouTube" summary="Browse everything I have published on the channel." cta="Watch on YouTube" />
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="speaking-title">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title" id="speaking-title">Speaking</h2>
+          <p class="cs-muted">Talks and workshops on three areas I work in every day.</p>
+        </div>
+        <img class="section-art" src="/assets/web/studio-microphone.webp" alt="" loading="lazy" />
+      </div>
+      <div class="grid-3">
+        {speakingTopics.map((t) => (
+          <div class="cs-card">
+            <h3 class="cs-card-title">{t.title}</h3>
+            <p class="cs-muted">{t.summary}</p>
+          </div>
+        ))}
+      </div>
+      <h3 class="sub-title">Talks and workshops</h3>
+      <div class="grid-3">
+        {talks.map((t) => <TalkCard title={t.title} topic={t.topic} event={t.event} date={t.date} recordingUrl={t.recordingUrl} />)}
+      </div>
+      <div class="section-cta">
+        <Button href="/speaking" variant="secondary" arrow>Invite me to speak</Button>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="learn-title">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title" id="learn-title">Learn</h2>
+          <p class="cs-muted">Pathways through my articles, grouped by what you want to build.</p>
+        </div>
+        <img class="section-art" src="/assets/web/lesson-cards.webp" alt="" loading="lazy" />
+      </div>
+      <div class="grid-3">
+        {learningPaths.map((p, i) => <LearningPathCard index={i + 1} title={p.title} summary={p.summary} lessons={p.lessons} />)}
+      </div>
+      <p class="section-cta"><a class="cs-link" href="/learn">Explore the learning paths<Arrow /></a></p>
+    </section>
+
+    <section class="section" aria-labelledby="work-title">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title" id="work-title">Selected work</h2>
+          <p class="cs-muted">Products and tools I build, and the open-source work around them.</p>
+        </div>
+      </div>
+      <div class="grid-2">
+        {featuredWork.map((p) => <ProjectCard name={p.name} role={p.role} problem={p.summary} links={p.links} />)}
+      </div>
+      <ul class="work-row">
+        {otherWork.map((p) => (
+          <li><a class="cs-link" href={p.links.source} target="_blank" rel="noopener noreferrer">{p.name} on GitHub<Arrow /></a></li>
+        ))}
+      </ul>
+      <p class="section-cta"><a class="cs-link" href="/projects">See all projects<Arrow /></a></p>
+    </section>
+
+    <section class="section" aria-labelledby="writing-title">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title" id="writing-title">Latest writing</h2>
+          <p class="cs-muted">Recent articles from my Medium account.</p>
+        </div>
+      </div>
+      <div class="grid-2">
+        {latest.map((a) => <ArticleCard href={a.href} title={a.title} topic={a.topic} date={a.date} />)}
+      </div>
+      <p class="section-cta"><a class="cs-link" href="/writing">Read all writing<Arrow /></a></p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .sub-title { margin: var(--space-6) 0 var(--space-3); font: 700 24px/1.3 var(--font-sans); }
+  .section-cta { margin: var(--space-4) 0 0; }
+  .work-row { list-style: none; display: flex; flex-wrap: wrap; gap: 0 var(--space-4); margin: var(--space-3) 0 0; padding: var(--space-2) 0 0; border-top: 1px solid var(--border); }
+  @media (max-width: 767px) { .sub-title { font-size: 21px; } }
+</style>
