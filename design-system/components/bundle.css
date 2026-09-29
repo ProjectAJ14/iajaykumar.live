@@ -40,9 +40,9 @@ body { margin: 0; background: var(--surface-page); color: var(--text-primary); f
 /* Header */
 .cs-header { display: flex; align-items: center; gap: var(--space-4); height: var(--header-height); padding: 0 var(--gutter-desktop);
   background: var(--surface-page); border-bottom: 1px solid var(--border); }
-.cs-wordmark { font: 800 20px/1 var(--font-sans); color: var(--text-primary); text-decoration: none; letter-spacing: -.01em; }
+.cs-wordmark { display: inline-flex; align-items: center; min-height: var(--touch-target); font: 800 20px/1 var(--font-sans); color: var(--text-primary); text-decoration: none; letter-spacing: -.01em; }
 .cs-nav { display: flex; gap: var(--space-3); flex: 1; }
-.cs-nav-link { position: relative; color: var(--text-secondary); text-decoration: none; font: 600 16px/1.5 var(--font-sans); padding: var(--space-1) 0; }
+.cs-nav-link { position: relative; display: inline-flex; align-items: center; min-height: var(--touch-target); color: var(--text-secondary); text-decoration: none; font: 600 16px/1.5 var(--font-sans); padding: var(--space-1) 0; }
 .cs-nav-link:hover, .cs-nav-link[aria-current="page"] { color: var(--text-primary); }
 .cs-nav-link[aria-current="page"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; border-radius: 2px; background: var(--coral-accent); }
 .cs-header-end { display: flex; align-items: center; gap: var(--space-2); margin-left: auto; }
@@ -70,7 +70,7 @@ body { margin: 0; background: var(--surface-page); color: var(--text-primary); f
   padding: var(--space-8) var(--gutter-desktop) 0; background: var(--surface-page) center / cover no-repeat; color: var(--text-primary); overflow: hidden; }
 .cs-hero-copy { position: relative; z-index: 2; align-self: center; max-width: 600px; padding-bottom: var(--space-8); }
 .cs-eyebrow { margin: 0 0 var(--space-2); font: 500 13px/1.45 var(--font-mono); letter-spacing: .02em; color: var(--cool-complement); }
-.cs-hero-title { margin: 0; font: 800 68px/1.05 var(--font-sans); letter-spacing: -.02em; }
+.cs-hero-title { margin: 0; font: 800 68px/1.05 var(--font-sans); letter-spacing: -.02em; text-wrap: balance; }
 .cs-accent-word { font-family: var(--font-editorial); font-style: italic; font-weight: 600; color: var(--coral-accent); }
 .cs-hero-lede { margin: var(--space-3) 0 0; font: 400 19px/1.65 var(--font-sans); color: var(--text-secondary); max-width: 34em; }
 .cs-hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
@@ -102,7 +102,7 @@ body { margin: 0; background: var(--surface-page); color: var(--text-primary); f
 .cs-tag { display: inline-block; font: 500 13px/1.45 var(--font-mono); letter-spacing: .02em; color: var(--cool-complement); }
 .cs-link { display: inline-flex; align-items: center; gap: 6px; min-height: var(--touch-target); color: var(--coral-accent); font: 700 16px/1.5 var(--font-sans); text-decoration: none; }
 .cs-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: auto; }
-a.cs-card:hover, .cs-project:hover, .cs-talk:hover, .cs-talk:focus-within { transform: translateY(-4px); }
+a.cs-card:hover, a.cs-card:focus-visible, .cs-project:hover, .cs-project:focus-within, .cs-talk:hover, .cs-talk:focus-within { transform: translateY(-4px); }
 
 /* Media feature */
 .cs-media { border-radius: var(--radius-card-lg); padding: 0; overflow: hidden; }
@@ -144,7 +144,7 @@ a.cs-card:hover, .cs-project:hover, .cs-talk:hover, .cs-talk:focus-within { tran
 .cs-stack { font: 500 13px/1.45 var(--font-mono); color: var(--cool-complement); }
 
 /* Article */
-.cs-article:hover { background: var(--surface-raised); }
+.cs-article:hover, .cs-article:focus-visible { background: var(--surface-raised); }
 .cs-underline { background: linear-gradient(var(--coral-accent), var(--coral-accent)) 0 100% / 0 2px no-repeat;
   transition: background-size var(--duration-standard) var(--ease-out-gentle); }
 .cs-article:hover .cs-underline, .cs-article:focus-visible .cs-underline { background-size: 100% 2px; }
@@ -153,6 +153,6 @@ a.cs-card:hover, .cs-project:hover, .cs-talk:hover, .cs-talk:focus-within { tran
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-property: color, background-color, border-color, box-shadow, outline-color !important; }
-  .cs-btn:hover, a.cs-card:hover, .cs-project:hover, .cs-talk:hover, .cs-talk:focus-within, .cs-media:hover .cs-media-prop { transform: none; }
+  .cs-btn:hover, a.cs-card:hover, a.cs-card:focus-visible, .cs-project:hover, .cs-project:focus-within, .cs-talk:hover, .cs-talk:focus-within, .cs-media:hover .cs-media-prop { transform: none; }
   .cs-arrow { transform: none !important; }
 }

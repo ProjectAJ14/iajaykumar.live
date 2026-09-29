@@ -132,7 +132,7 @@
 
   function ProjectCard(p) {
     var L = p.links || {};
-    var links = [['demo', 'Demo'], ['docs', 'Docs'], ['source', 'Source']].filter(function (k) { return L[k[0]]; })
+    var links = [['demo', 'Demo'], ['site', 'Website'], ['docs', 'Docs'], ['source', 'Source']].filter(function (k) { return L[k[0]]; })
       .map(function (k) { return h('a', Object.assign({ key: k[0], className: 'cs-link', href: L[k[0]] }, ext(L[k[0]])), k[1], h(Arrow)); });
     return h('article', { className: 'cs-card cs-project' },
       h('div', { className: 'cs-project-head' },
