@@ -1,0 +1,18 @@
+<!-- @dsCard group="Home" height=480 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Hero — preview</title></head>
+<body>
+<div id="root" class=""></div>
+<script>
+  var C = window.CoralStudio, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(C.Hero, { eyebrow: 'Engineer · builder · teacher',
+      title: 'I build software, then share what the journey taught me.', accentWord: 'journey',
+      lede: 'Full-stack engineer sharing practical lessons through talks, videos, writing, and hands-on learning.',
+      primary: { label: 'Watch on YouTube', href: '#' }, secondary: { label: 'Invite me to speak', href: '#' },
+      avatarSrc: '/_blob/d23e7714fa29c70be0a0e550d04b0b95', backdropSrc: '/_blob/f57ccc5f19c9389d45a8862312cb2af1', propSrc: '/_blob/62b53417d1a5ea0990d17a5df04583b0' })
+  ));
+</script>
+</body>
+</html>

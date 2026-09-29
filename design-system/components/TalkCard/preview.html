@@ -1,0 +1,15 @@
+<!-- @dsCard group="Content" height=220 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>TalkCard — preview</title></head>
+<body>
+<div id="root" class="cs-grid"></div>
+<script>
+  var C = window.CoralStudio, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(C.TalkCard, { title: 'Flutter & AI Fusion: Powering Apps with Intelligence', topic: 'Flutter and AI', recordingUrl: '#' }),
+    h(C.TalkCard, { title: 'Debug Like a Pro: Harnessing the Power of Dart DevTools in Flutter', topic: 'Flutter' })
+  ));
+</script>
+</body>
+</html>

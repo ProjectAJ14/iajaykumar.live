@@ -1,0 +1,18 @@
+<!-- @dsCard group="Content" height=300 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>ProjectCard — preview</title></head>
+<body>
+<div id="root" class="cs-grid"></div>
+<script>
+  var C = window.CoralStudio, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(C.ProjectCard, { name: 'Eklavya', role: 'Creator · maintainer', problem: 'Developers ship code faster than they learn the concepts behind it.',
+      outcome: 'A developer-learning plugin with adaptive questions and a local knowledge graph.',
+      links: { docs: 'https://eklavya-run.web.app/docs/', source: 'https://github.com/ProjectAJ14/eklavya' } }),
+    h(C.ProjectCard, { name: 'JSON Viewer', problem: 'Large JSON is hard to read in raw text.', outcome: 'A browser-based JSON explorer with tree and graph views.',
+      links: { demo: 'https://json.nonstopio.com/', source: 'https://github.com/nonstopio/json-viewer' } })
+  ));
+</script>
+</body>
+</html>

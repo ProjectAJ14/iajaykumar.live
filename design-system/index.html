@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coral Studio</title>
+<meta name="description" content="Coral Studio: the iajaykumar.live design system, rendered from the files in this folder.">
+<!--
+  Everything on this page is read from the files beside it — tokens.json, the *.md sections,
+  components/*/README.md and preview.html, design-system.json. Edit those files, not this page.
+  Serve the repo root over HTTP (fetch does not work from file://):  python3 -m http.server  → /design-system/
+-->
+<link rel="stylesheet" href="components/bundle.css">
+<style>
+  .ds { display: grid; grid-template-columns: 220px minmax(0, 1fr); min-height: 100vh; }
+  .ds-nav { position: sticky; top: 0; align-self: start; height: 100vh; overflow: auto; padding: var(--space-3); border-right: 1px solid var(--border); box-sizing: border-box; }
+  .ds-nav a { display: block; padding: 6px 0; color: var(--text-secondary); text-decoration: none; font: 600 14px/1.45 var(--font-sans); }
+  .ds-nav a:hover { color: var(--coral-accent); }
+  .ds-nav .cs-wordmark { display: block; margin-bottom: var(--space-3); }
+  .ds-main { padding: var(--space-4); max-width: 1100px; box-sizing: border-box; }
+  .ds-main section { margin-bottom: var(--space-12); scroll-margin-top: var(--space-3); }
+  .ds-main h1 { font: 800 52px/1.12 var(--font-sans); margin: 0 0 var(--space-2); }
+  .ds-main h2 { font: 800 32px/1.2 var(--font-sans); margin: 0 0 var(--space-3); }
+  .ds-main h3 { font: 700 22px/1.3 var(--font-sans); margin: var(--space-4) 0 var(--space-1); }
+  .md { font: 400 17px/1.65 var(--font-sans); max-width: var(--reading-column); }
+  .md code, .ds-mono { font: 500 13px/1.45 var(--font-mono); color: var(--cool-complement); }
+  .md table { border-collapse: collapse; font-size: 15px; }
+  .md th, .md td { border-bottom: 1px solid var(--border); padding: 6px 12px 6px 0; text-align: left; vertical-align: top; }
+  .md a { color: var(--coral-accent); }
+  .ds-bar { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-4); }
+  .ds-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--space-2); }
+  .ds-swatch { border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; background: var(--surface-panel); }
+  .ds-chip { display: flex; height: 72px; }
+  .ds-chip span { flex: 1; display: flex; align-items: end; padding: 6px 8px; font: 500 11px/1 var(--font-mono); }
+  .ds-swatch div.info { padding: var(--space-1) var(--space-2) var(--space-2); font-size: 13px; line-height: 1.45; color: var(--text-secondary); }
+  .ds-swatch b { display: block; color: var(--text-primary); font: 700 15px/1.4 var(--font-sans); }
+  .ds-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .ds-table th, .ds-table td { text-align: left; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .ds-table td:last-child { color: var(--text-secondary); }
+  .ds-pass { color: var(--cool-complement); font-weight: 700; } .ds-fail { color: var(--coral-accent); font-weight: 700; }
+  .ds-spec { padding: var(--space-2) 0; border-bottom: 1px solid var(--border); }
+  .ds-spec .ds-mono { display: block; margin-bottom: 4px; }
+  .ds-bar-v { height: 16px; background: var(--coral-fill); border-radius: 4px; }
+  .ds-radius { width: 96px; height: 64px; background: var(--surface-raised); border: 2px solid var(--coral-accent); }
+  .ds-card { border: 1px solid var(--border); border-radius: var(--radius-card-lg); overflow: hidden; margin-bottom: var(--space-4); background: var(--surface-panel); }
+  .ds-card iframe { display: block; width: 100%; border: 0; background: var(--surface-page); }
+  .ds-card .md { padding: var(--space-3); max-width: none; }
+  .ds-card .md h1 { font: 700 24px/1.3 var(--font-sans); margin: 0 0 var(--space-1); }
+  .ds-assets { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-2); }
+  .ds-assets figure { margin: 0; border: 1px solid var(--border); border-radius: var(--radius-card); background: var(--surface-raised); padding: var(--space-2); }
+  .ds-assets img { width: 100%; height: 160px; object-fit: contain; }
+  .ds-assets figcaption { font: 500 13px/1.45 var(--font-mono); color: var(--text-secondary); margin-top: var(--space-1); }
+  .ds-err { color: var(--coral-accent); font-weight: 700; }
+  @media (max-width: 767px) { .ds { grid-template-columns: 1fr; } .ds-nav { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--border); } .ds-main { padding: var(--gutter-mobile); } .ds-main h1 { font-size: 38px; } }
+</style>
+</head>
+<body>
+<div class="ds">
+  <nav class="ds-nav" aria-label="Design system">
+    <span class="cs-wordmark">Coral Studio</span>
+    <a href="#overview">Overview</a><a href="#colors">Color</a><a href="#type">Typography</a><a href="#scales">Spacing, radius, layout</a>
+    <a href="#motion-tokens">Motion tokens</a><a href="#components">Components</a><a href="#assets">Assets</a><a href="#motion">Motion</a><a href="#pages">Page blueprints</a>
+  </nav>
+  <main class="ds-main" id="main"><p>Loading design system…</p></main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+<script src="components/bundle.js"></script>
+<script>
+(async function () {
+  const get = (p, json) => fetch(p).then(r => { if (!r.ok) throw new Error(p + ' ' + r.status); return json ? r.json() : r.text(); });
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const main = document.getElementById('main');
+  let tokens, index;
+  try { [tokens, index] = await Promise.all([get('tokens.json', 1), get('design-system.json', 1)]); }
+  catch (e) { main.innerHTML = '<p class="ds-err">Could not load tokens.json — serve the repo over HTTP (python3 -m http.server) and open /design-system/.</p>'; return; }
+
+  // tokens.json → CSS custom properties (same rules the artifact page compiles).
+  const themes = tokens.color.themes.map(t => t.id), first = themes[0];
+  const cval = (t, th) => { let v = typeof t.value === 'string' ? (th === first ? t.value : null) : t.value[th]; return v && v.replace(/^\{(.+)\}$/, 'var(--$1)'); };
+  let css = themes.map((th, i) => (i ? '' : ':root, ') + `[data-theme="${th}"] {` + tokens.color.tokens.map(t => { const v = cval(t, th); return v ? `--${t.name}:${v};` : ''; }).join('') + '}').join('\n');
+  const other = Object.keys(tokens).filter(k => tokens[k] && Array.isArray(tokens[k].tokens) && k !== 'color');
+  css += '\n:root{' + other.flatMap(k => tokens[k].tokens).map(t => `--${t.name}:${t.value};`).join('') +
+    Object.entries(tokens.type.families).map(([k, v]) => `--font-${k}:${v};`).join('') + '}';
+  const styleCss = (s, fam) => `font-family:var(--font-${s.family || fam});font-size:${s.fontSize};line-height:${s.lineHeight};font-weight:${s.fontWeight};` +
+    (s.letterSpacing ? `letter-spacing:${s.letterSpacing};` : '') + (s.fontStyle ? `font-style:${s.fontStyle};` : '');
+  css += '\n' + tokens.type.groups.flatMap(g => g.styles.map(s => `.${s.name}{${styleCss(s, g.family)}}`)).join('\n');
+  const tokenStyle = document.createElement('style'); tokenStyle.textContent = css; document.head.prepend(tokenStyle);
+
+  // Asset map: artifact upload ids → repo files, so the same previews render here.
+  const repoPath = { Portraits: '../public/assets/portraits/', Illustrations: '../public/assets/illustrations/', Props: '../public/assets/props/' };
+  const blobMap = {};
+  for (const [g, grp] of Object.entries(index.assetGroups)) for (const f of Object.values(grp.files)) blobMap['/_blob/' + f.blob] = repoPath[g] + f.name;
+  const localize = html => html.replace(/\/_blob\/[0-9a-f]{32}/g, m => blobMap[m] || m);
+
+  // Contrast
+  const lum = hex => { const c = hex.replace('#', '').match(/../g).map(x => parseInt(x, 16) / 255).map(x => x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
+  const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
+  const hexOf = (name, th) => { const t = tokens.color.tokens.find(t => t.name === name); return t && (typeof t.value === 'string' ? t.value : t.value[th] || t.value[first]); };
+
+  const [readme, motion, pages] = await Promise.all(['README.md', 'Motion.md', 'Pages.md'].map(p => get(p).catch(() => '')));
+  const md = s => marked.parse(s || '');
+  const out = [];
+
+  out.push(`<section id="overview"><div class="ds-bar"><h1 style="margin:0;flex:1">${esc(index.title)}</h1><span id="toggle"></span></div>
+    <div id="cover-box" style="overflow:hidden;border-radius:var(--radius-card-lg)"><iframe id="cover" title="Cover" style="width:960px;height:320px;border:0;transform-origin:0 0"></iframe></div>
+    <div class="md">${md(readme)}</div></section>`);
+
+  out.push(`<section id="colors"><h2>Color</h2><div class="ds-swatches">` + tokens.color.tokens.map(t =>
+    `<div class="ds-swatch"><div class="ds-chip">${themes.map(th => { const v = hexOf(t.name, th); return `<span style="background:${v};color:${ratio(v, '#101827') > 4.5 ? '#101827' : '#F7F8FB'}">${th} ${v}</span>`; }).join('')}</div>
+     <div class="info"><b>${esc(t.name)}</b>${esc(t.usage || '')}</div></div>`).join('') + `</div>
+    <h3>Contrast, per theme</h3><table class="ds-table"><tr><th>Pair</th>${themes.map(th => `<th>${th}</th>`).join('')}<th>Needs</th></tr>` +
+    [['text-primary', 'surface-page', 4.5], ['text-primary', 'surface-raised', 4.5], ['text-secondary', 'surface-page', 4.5], ['text-secondary', 'surface-raised', 4.5],
+     ['coral-accent', 'surface-page', 4.5], ['coral-accent', 'surface-raised', 4.5], ['cool-complement', 'surface-raised', 4.5], ['on-coral', 'coral-fill', 4.5], ['border', 'surface-page', 3]]
+    .map(([f, b, need]) => `<tr><td class="ds-mono">${f} on ${b}</td>${themes.map(th => { const r = ratio(hexOf(f, th), hexOf(b, th)); return `<td class="${r >= need ? 'ds-pass' : 'ds-fail'}">${r.toFixed(2)}:1</td>`; }).join('')}<td>${need}:1${f === 'border' ? ' (decorative only — see usage)' : ''}</td></tr>`).join('') + `</table></section>`);
+
+  out.push(`<section id="type"><h2>Typography</h2>` + tokens.type.groups.map(g => `<h3>${esc(g.name)} <span class="ds-mono">${esc(g.family)}</span></h3>` +
+    g.styles.map(s => `<div class="ds-spec"><span class="ds-mono">${s.name} · ${s.fontSize} / ${s.lineHeight} · ${s.fontWeight}${s.fontStyle ? ' ' + s.fontStyle : ''}</span>
+      <div class="${s.name}">${esc(s.sample || s.name)}</div><div class="cs-muted" style="font-size:13px">${esc(s.usage || '')}</div></div>`).join('')).join('') + `</section>`);
+
+  const tbl = (fam, vis) => `<h3>${fam[0].toUpperCase() + fam.slice(1)}</h3>${tokens[fam].note ? `<p class="cs-muted">${esc(tokens[fam].note)}</p>` : ''}<table class="ds-table">` +
+    tokens[fam].tokens.map(t => `<tr><td class="ds-mono">${t.name}</td><td>${esc(t.value)}</td><td style="width:40%">${vis ? vis(t) : ''}</td><td>${esc(t.usage || '')}</td></tr>`).join('') + `</table>`;
+  out.push(`<section id="scales"><h2>Spacing, radius, layout</h2>` +
+    tbl('spacing', t => `<div class="ds-bar-v" style="width:${t.value}"></div>`) +
+    tbl('radius', t => `<div class="ds-radius" style="border-radius:${t.value}"></div>`) + tbl('layout') + `</section>`);
+  out.push(`<section id="motion-tokens"><h2>Motion tokens</h2>${tbl('duration')}${tbl('easing')}</section>`);
+
+  const comps = (/@ds-bundle: (\{.*?\}) \*\//.exec(await get('components/bundle.js')) || [])[1];
+  const names = comps ? JSON.parse(comps).components.map(c => c.name) : [];
+  out.push(`<section id="components"><h2>Components</h2><p class="cs-muted">Live previews from <code>components/*/preview.html</code>, running <code>components/bundle.js</code>. Namespace <code>window.${esc(index.namespace)}</code>; props in <code>components/index.d.ts</code>.</p>` +
+    names.map(n => `<div class="ds-card" id="c-${n}"><iframe title="${n} preview" data-comp="${n}"></iframe><div class="md" data-readme="${n}"></div></div>`).join('') + `</section>`);
+
+  const assetMds = await Promise.all(index.groups.map(g => get(`assets/${g}/README.md`).catch(() => '')));
+  out.push(`<section id="assets"><h2>Assets</h2>` + index.groups.map((g, i) => `<div class="md">${md(assetMds[i])}</div><div class="ds-assets">` +
+    index.assetGroups[g].order.map(f => `<figure><img src="${repoPath[g] + f}" alt=""><figcaption>${repoPath[g].replace('../', '') + f}</figcaption></figure>`).join('') + `</div>`).join('') + `</section>`);
+
+  out.push(`<section id="motion"><div class="md">${md(motion)}</div></section><section id="pages"><div class="md">${md(pages)}</div></section>`);
+  main.innerHTML = out.join('');
+
+  // Preview frames: same contract as the artifact — tokens, bundle.css, React, bundle.js preloaded, data-theme on <html>.
+  const head = () => `<base href="${location.href.replace(/[^/]*([?#].*)?$/, '')}"><style>${css}</style><link rel="stylesheet" href="components/bundle.css">` +
+    [...document.querySelectorAll('script[src]')].filter(s => !/marked/.test(s.src)).map(s => `<script src="${s.src}"><\/script>`).join('');
+  const frame = async (el, path, fixedH) => {
+    const src = localize(await get(path));
+    const h = +((/height=(\d+)/.exec(src) || [])[1] || 160);
+    el.style.height = (fixedH || h) + 'px';
+    el.srcdoc = src.replace(/<head>/i, '<head>' + head()).replace(/<html([^>]*)>/i, (m, a) => `<html${a.replace(/\sdata-theme="[^"]*"/, '')} data-theme="${document.documentElement.dataset.theme}">`);
+    if (!fixedH) el.onload = () => setTimeout(() => { try { el.style.height = Math.max(h, el.contentDocument.documentElement.scrollHeight) + 'px'; } catch (e) {} }, 400);
+  };
+  frame(document.getElementById('cover'), 'components/Cover/preview.html', 320);
+  // The cover is one 960×320 layout; scale it to fit, as the artifact page does.
+  const fitCover = () => { const box = document.getElementById('cover-box'), k = Math.min(1, box.clientWidth / 960);
+    box.firstChild.style.transform = `scale(${k})`; box.style.height = 320 * k + 'px'; };
+  fitCover(); addEventListener('resize', fitCover);
+  document.querySelectorAll('[data-comp]').forEach(el => frame(el, `components/${el.dataset.comp}/preview.html`));
+  document.querySelectorAll('[data-readme]').forEach(async el => { el.innerHTML = md(await get(`components/${el.dataset.readme}/README.md`).catch(() => '')); });
+
+  // Theme: one control drives the page and every preview frame.
+  let theme; try { theme = localStorage.getItem('cs-theme'); } catch (e) {}
+  const setTheme = t => {
+    document.documentElement.dataset.theme = t;
+    document.querySelectorAll('iframe').forEach(f => { try { f.contentDocument.documentElement.setAttribute('data-theme', t); } catch (e) {} });
+    try { localStorage.setItem('cs-theme', t); } catch (e) {}
+    root.render(React.createElement(window.CoralStudio.ThemeToggle, { theme: t, onChange: setTheme }));
+  };
+  const root = ReactDOM.createRoot(document.getElementById('toggle'));
+  setTheme(theme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : first));
+})();
+</script>
+</body>
+</html>

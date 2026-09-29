@@ -1,0 +1,17 @@
+<!-- @dsCard group="Actions" height=96 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Button — preview</title></head>
+<body>
+<div id="root" class="cs-row"></div>
+<script>
+  var C = window.CoralStudio, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(C.Button, { href: '#', variant: 'primary' }, 'Watch on YouTube'),
+    h(C.Button, { href: '#', variant: 'secondary' }, 'Invite me to speak'),
+    h(C.Button, { href: '#', variant: 'ghost', arrow: true }, 'All articles'),
+    h(C.Button, { disabled: true }, 'Disabled')
+  ));
+</script>
+</body>
+</html>

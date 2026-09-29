@@ -1,0 +1,17 @@
+<!-- @dsCard group="Content" height=320 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>LearningPathCard — preview</title></head>
+<body>
+<div id="root" class="cs-grid"></div>
+<script>
+  var C = window.CoralStudio, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(C.LearningPathCard, { index: 2, title: 'Flutter and mobile', summary: 'Project setup, configuration, and debugging habits that hold up in production.',
+      lessons: [ { kind: 'Article', title: 'Deep Dive into Flutter Create', href: 'https://medium.com/nonstopio/deep-dive-into-flutter-create-f629f3926d82' },
+                 { kind: 'Article', title: 'How to use environment variables in Flutter?', href: 'https://medium.com/nonstopio/how-to-use-environment-variables-in-flutter-90cfc882177d' },
+                 { kind: 'Workshop', title: 'Consuming APIs like an Expert', href: '#' } ] })
+  ));
+</script>
+</body>
+</html>

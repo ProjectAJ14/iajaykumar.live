@@ -1,0 +1,16 @@
+<!-- @dsCard group="Content" height=440 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>MediaFeature — preview</title></head>
+<body>
+<div id="root" class="cs-grid"></div>
+<script>
+  var C = window.CoralStudio, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(C.MediaFeature, { href: 'https://www.youtube.com/channel/UCyV2fy32RyPgOco83tMkR-g', title: 'Watch Ajay on YouTube', topic: 'Channel',
+      summary: 'Talks, walkthroughs, and practical lessons from building real products.', cta: 'Visit the channel', propSrc: '/_blob/8d31d8d1bc20205c75a65a18ee41c0b0' }),
+    h(C.MediaFeature, { href: '#', title: 'Video title from videos.csv', topic: 'Flutter', duration: '18 min', thumbnailSrc: '/_blob/f57ccc5f19c9389d45a8862312cb2af1', thumbnailAlt: 'Placeholder — use the real YouTube thumbnail' })
+  ));
+</script>
+</body>
+</html>

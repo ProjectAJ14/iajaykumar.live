@@ -1,0 +1,16 @@
+<!-- @dsCard group="Actions" height=88 -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>ThemeToggle — preview</title></head>
+<body>
+<div id="root" class="cs-row"></div>
+<script>
+  var C = window.CoralStudio, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(C.ThemeToggle, { theme: 'dark', onChange: function(){} }),
+    h(C.ThemeToggle, { theme: 'light', onChange: function(){} }),
+    h(C.ThemeToggle)
+  ));
+</script>
+</body>
+</html>

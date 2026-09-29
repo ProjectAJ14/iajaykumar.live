@@ -1,5 +1,7 @@
 # Design system — Coral Studio
 
+> **Superseded by [`design-system/`](../design-system/README.md).** This is the original handoff brief. The design system built from it — exact tokens, components, and the decisions made where this brief gave ranges — lives in `design-system/`; where the two differ, `design-system/` wins.
+
 ## Design intent
 
 Ajay's site should feel like entering a warm, modern creator studio: clear enough to read for an hour, lively enough to remember in a minute. The visual anchors are his original illustrated avatar, coral-orange shirt, soft studio key light, and a small family of microphone, camera, and lesson props. The design supports a future speaker, YouTuber, and course creator without implying unpublished content exists.
