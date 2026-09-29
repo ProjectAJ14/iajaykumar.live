@@ -1,0 +1,24 @@
+---
+import Arrow from './Arrow.astro';
+import { ext } from './ext';
+interface Props { href?: string; title: string; topic?: string; duration?: string; summary?: string; thumbnailSrc?: string; thumbnailAlt?: string; cta?: string; propSrc?: string; }
+const p = Astro.props;
+// Real or absent: no destination, no card.
+---
+{p.href && (
+  <a class="cs-card cs-media" href={p.href} {...ext(p.href)}>
+    {p.thumbnailSrc && (
+      <div class="cs-media-thumb">
+        <img src={p.thumbnailSrc} alt={p.thumbnailAlt ?? ''} loading="lazy" />
+        <span class="cs-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span>
+      </div>
+    )}
+    <div class="cs-media-body">
+      <p class="cs-meta">{[p.topic, p.duration].filter(Boolean).join(' · ')}</p>
+      <h3 class="cs-card-title">{p.title}</h3>
+      {p.summary && <p class="cs-muted">{p.summary}</p>}
+      <span class="cs-link">{p.cta ?? 'Watch on YouTube'}<Arrow /></span>
+    </div>
+    {p.propSrc && <img class="cs-media-prop" src={p.propSrc} alt="" loading="lazy" />}
+  </a>
+)}

@@ -1,0 +1,17 @@
+---
+import Arrow from './Arrow.astro';
+import { ext } from './ext';
+type Lesson = { title: string; href: string; kind?: string };
+interface Props { title: string; index?: number; summary?: string; lessons?: Lesson[]; }
+const p = Astro.props;
+---
+<article class="cs-card cs-path">
+  {p.index != null && <span class="cs-chapter">{String(p.index).padStart(2, '0')}</span>}
+  <h3 class="cs-card-title">{p.title}</h3>
+  {p.summary && <p class="cs-muted">{p.summary}</p>}
+  {p.lessons?.length ? (
+    <ul class="cs-lessons">
+      {p.lessons.map((l) => <li><a href={l.href} {...ext(l.href)}>{l.kind && <span class="cs-tag">{l.kind}</span>}<span>{l.title}</span><Arrow /></a></li>)}
+    </ul>
+  ) : null}
+</article>

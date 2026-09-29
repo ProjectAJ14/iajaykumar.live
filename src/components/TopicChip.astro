@@ -1,0 +1,6 @@
+---
+// Filter chip. Behavior (aria-pressed toggling) is wired by the page that uses it.
+interface Props { selected?: boolean; value?: string; }
+const { selected = false, value } = Astro.props;
+---
+<button type="button" class:list={['cs-chip', { 'is-selected': selected }]} aria-pressed={selected ? 'true' : 'false'} data-value={value}><slot /></button>

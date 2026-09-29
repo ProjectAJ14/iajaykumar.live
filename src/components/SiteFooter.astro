@@ -1,0 +1,22 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { LINKS } from '../content';
+const links = [
+  { label: 'YouTube', href: LINKS.youtube },
+  { label: 'GitHub', href: LINKS.github },
+  { label: 'Medium', href: LINKS.medium },
+  { label: 'LinkedIn', href: LINKS.linkedin },
+  { label: 'Stack Overflow', href: LINKS.stackoverflow },
+];
+---
+<footer class="cs-footer">
+  <div class="cs-footer-main">
+    <span class="cs-wordmark">Ajay Kumar</span>
+    <p class="cs-muted">Engineer, builder, and teacher.</p>
+  </div>
+  <nav class="cs-footer-links" aria-label="Elsewhere">
+    {links.map((l) => <a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>)}
+    <a href="/contact">Contact</a>
+  </nav>
+  <ThemeToggle />
+</footer>

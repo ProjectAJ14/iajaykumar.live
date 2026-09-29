@@ -1,8 +1,8 @@
-name,group,summary,source_url,secondary_url,role_status,feature_order
-Eklavya,Products and tools,"A developer-learning plugin with adaptive questions and a local knowledge graph.",https://github.com/ProjectAJ14/eklavya,https://eklavya-run.web.app/docs/,GitHub profile says Ajay builds and maintains,1
-Morph,Products and tools,"A desktop tool for turning rough copied messages into formatted workplace messages.",https://github.com/ProjectAJ14/Morph,https://projectaj14.github.io/Morph/,GitHub profile says Ajay builds and maintains,2
-JSON Viewer,Products and tools,"A browser-based JSON explorer with tree and graph views.",https://github.com/nonstopio/json-viewer,https://json.nonstopio.com/,Confirm exact role,3
-Narad Muni,Products and tools,"A desktop app that converts spoken or typed updates into reviewed work messages and logs.",https://github.com/nonstopio/Narad-Muni,https://nonstopio.github.io/Narad-Muni/,Confirm exact role,4
-Flutter Forge,Open source and community,"A collection of Dart and Flutter packages plugins and CLI tools.",https://github.com/nonstopio/flutter_forge,https://pub.dev/packages/nonstop_cli,Confirm exact role,5
-Vyuh,Open source and community,"A modular framework for CMS-driven Flutter apps at scale.",https://github.com/vyuh-tech/vyuh,https://vyuh.tech/,Confirm exact role,6
-Flutter Coverage Action,Open source and community,"A GitHub Action that publishes browsable Flutter coverage reports.",https://github.com/ProjectAJ14/flutter-coverage-action,https://projectaj14.github.io/flutter-coverage-action/coverage/,Confirm exact role,7
+name,group,summary,source_url,secondary_url,secondary_kind,role_status,feature_order
+Eklavya,Products and tools,A developer-learning plugin with adaptive questions and a local knowledge graph.,https://github.com/ProjectAJ14/eklavya,https://eklavya-run.web.app/docs/,docs,GitHub profile says Ajay builds and maintains,1
+Morph,Products and tools,A desktop tool for turning rough copied messages into formatted workplace messages.,https://github.com/ProjectAJ14/Morph,https://projectaj14.github.io/Morph/,site,GitHub profile says Ajay builds and maintains,2
+JSON Viewer,Products and tools,A browser-based JSON explorer with tree and graph views.,https://github.com/nonstopio/json-viewer,https://json.nonstopio.com/,demo,Confirm exact role,3
+Narad Muni,Products and tools,A desktop app that converts spoken or typed updates into reviewed work messages and logs.,https://github.com/nonstopio/Narad-Muni,https://nonstopio.github.io/Narad-Muni/,site,Confirm exact role,4
+Flutter Forge,Open source and community,A collection of Dart and Flutter packages plugins and CLI tools.,https://github.com/nonstopio/flutter_forge,https://pub.dev/packages/nonstop_cli,docs,Confirm exact role,5
+Vyuh,Open source and community,A modular framework for CMS-driven Flutter apps at scale.,https://github.com/vyuh-tech/vyuh,https://vyuh.tech/,site,Confirm exact role,6
+Flutter Coverage Action,Open source and community,A GitHub Action that publishes browsable Flutter coverage reports.,https://github.com/ProjectAJ14/flutter-coverage-action,https://projectaj14.github.io/flutter-coverage-action/coverage/,demo,Confirm exact role,7

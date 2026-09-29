@@ -1,0 +1,17 @@
+{
+  "name": "iajaykumar-live",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "tokens": "node scripts/tokens.mjs",
+    "dev": "npm run tokens && astro dev",
+    "build": "npm run tokens && astro build && node scripts/check-dist.mjs",
+    "preview": "astro preview",
+    "test": "node --test scripts/*.test.mjs",
+    "deploy": "npm run build && firebase deploy --only hosting"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.5"
+  }
+}

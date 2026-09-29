@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.firebase/
+firebase-debug.log
+.DS_Store
+.claude/worktrees/
+.claude/settings.local.json
+src/styles/tokens.css

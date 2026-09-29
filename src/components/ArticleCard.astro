@@ -1,0 +1,11 @@
+---
+import Arrow from './Arrow.astro';
+import { ext } from './ext';
+interface Props { href: string; title: string; topic?: string; date?: string; source?: string; }
+const p = Astro.props;
+---
+<a class="cs-card cs-article" href={p.href} {...ext(p.href)} data-topic={p.topic}>
+  <p class="cs-meta">{[p.topic, p.date].filter(Boolean).join(' · ')}</p>
+  <h3 class="cs-card-title"><span class="cs-underline">{p.title}</span></h3>
+  <span class="cs-link">Read on {p.source ?? 'Medium'}<Arrow /></span>
+</a>
