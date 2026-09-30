@@ -13,7 +13,8 @@ The Firebase project is `iajaykumarlive` (`.firebaserc`); `firebase.json` serves
 `.github/workflows/ci.yml` runs lint, test and build, then:
 
 - **PR from this repo:** deploys a preview channel (expires in 7 days) and
-  comments its URL on the PR. Fork PRs get no secrets and skip the deploy.
+  comments its URL on the PR. Fork and Dependabot PRs get no
+  Actions secrets and skip the deploy.
 - **Push to `main`:** releases live. Merging a PR is therefore a live deploy;
   merge only with the owner's go-ahead in this session.
 

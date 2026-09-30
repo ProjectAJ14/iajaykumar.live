@@ -5,6 +5,10 @@ updates:
     schedule: { interval: weekly }
     groups:
       npm: { patterns: ["*"] }
+    ignore:
+      # @astrojs/check 0.9.x peers typescript ^5 || ^6; drop when it supports 7.
+      - dependency-name: typescript
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: /
     schedule: { interval: monthly }

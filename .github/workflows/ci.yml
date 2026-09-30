@@ -32,9 +32,9 @@ jobs:
       - run: npm test
       - run: npm run build # tokens + astro build + check-dist
 
-      # Fork PRs get no secrets, so they stop after the build.
+      # Fork and Dependabot PRs get no Actions secrets, so they stop after the build.
       - name: Deploy preview channel
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
