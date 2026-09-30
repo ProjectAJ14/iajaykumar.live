@@ -1,0 +1,52 @@
+# Lint, test and build every PR and push to main.
+# PRs from this repo get a Firebase preview channel; a push to main releases live.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write # preview URL comment
+  checks: write
+
+concurrency:
+  group: ci-${{ github.ref }}
+  # Cancel superseded PR runs; never cancel a live release mid-deploy.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build # tokens + astro build + check-dist
+
+      # Fork PRs get no secrets, so they stop after the build.
+      - name: Deploy preview channel
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_IAJAYKUMARLIVE }}
+          projectId: iajaykumarlive
+          expires: 7d
+
+      - name: Release live
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_IAJAYKUMARLIVE }}
+          projectId: iajaykumarlive
+          channelId: live

@@ -8,10 +8,14 @@ styled by the Coral Studio design system and deployed to Firebase Hosting.
 ```bash
 npm ci
 npm run dev       # localhost:4321
+npm run lint      # astro check (types and templates)
 npm test          # CSV parser tests
 npm run build     # tokens + astro build + dist audit (scripts/check-dist.mjs)
 npm run deploy    # build + firebase deploy --only hosting (owner only)
 ```
+
+CI (`.github/workflows/ci.yml`) runs lint, test and build on every PR and push
+to `main`. PRs get a Firebase preview channel; merging to `main` releases live.
 
 `npm run preview` serves the built `dist/`. The design system viewer runs with
 `python3 -m http.server 8791` at `http://localhost:8791/design-system/`.
@@ -26,6 +30,7 @@ public/assets/  Illustrations, web/ WebP derivatives, og-card.jpg
 scripts/        tokens.mjs, images.mjs, check-dist.mjs, csv.test.mjs
 docs/           Original design and content handoff
 .claude/        Claude Code settings, hooks and project skills
+.github/        CI workflow and Dependabot
 ```
 
 ## Further reading
