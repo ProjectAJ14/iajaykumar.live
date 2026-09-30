@@ -8,12 +8,15 @@ description: How to verify iajaykumar.live before calling a change done. Use whe
 ## 1. Automated
 
 ```bash
+npm run lint       # astro check
 npm test
 npm run build      # tokens + astro build + check-dist
 ```
 
 `check-dist` fails on a missing title or description, anything but one `<h1>`,
 a broken internal link or a `""`/`#` link. Keep the output for the report.
+CI runs the same three commands on every PR; a green CI run does not replace
+the browser checks below.
 
 ## 2. Serve the build
 

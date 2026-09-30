@@ -5,6 +5,7 @@
   "scripts": {
     "tokens": "node scripts/tokens.mjs",
     "dev": "npm run tokens && astro dev",
+    "lint": "astro check",
     "build": "npm run tokens && astro build && node scripts/check-dist.mjs",
     "preview": "astro preview",
     "test": "node --test scripts/*.test.mjs",
@@ -13,5 +14,9 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
     "astro": "^7.3.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.3"
   }
 }

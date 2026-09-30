@@ -21,6 +21,7 @@ editing `src/`, `content/` or `design-system/`.
 | `scripts/` | `tokens.mjs`, `images.mjs`, `check-dist.mjs` (post-build audit), `csv.test.mjs` |
 | `docs/` | Original design and content handoff; `design-system/` wins where they differ |
 | `firebase.json`, `.firebaserc` | Hosting config (clean URLs, cache headers) and the default project |
+| `.github/` | `workflows/ci.yml` (lint, test, build, preview per PR, live release on `main`) and `dependabot.yml` |
 | `.claude/` | Shared settings, hooks and project skills (`coral-studio`, `commit`, `pr`, `deploy`, `add-content`, `verify-site`) |
 
 ## Documentation is part of every feature
@@ -42,8 +43,8 @@ memory are not evidence.
 | Tokens, color, type, motion or `bundle.css` | `design-system/README.md`, `Motion.md`, `.claude/skills/coral-studio/SKILL.md` |
 | CSV columns or adapter rules | `content/CLAUDE.md`, `.claude/skills/add-content/SKILL.md`, `docs/CONTENT_AND_SOURCES.md` |
 | Assets or derivatives | `public/assets/README.md`, `design-system/assets/<Group>/README.md`; Ajay avatar references in `public/assets/portraits/CLAUDE.md` |
-| Scripts, build or checks | `README.md` quick start, this file's required checks, `.claude/skills/verify-site/SKILL.md` |
-| Hosting or deploy | `firebase.json`, `.claude/skills/deploy/SKILL.md`, `README.md` |
+| Scripts, build or checks | `README.md` quick start, this file's required checks, `.claude/skills/verify-site/SKILL.md`, `.github/workflows/ci.yml` |
+| Hosting or deploy | `firebase.json`, `.github/workflows/ci.yml`, `.claude/skills/deploy/SKILL.md`, `README.md` |
 | Claude settings or hooks | `.claude/settings.json`, `.claude/hooks/`, this file |
 
 Keep the README a short introduction and quick start. Put procedures in skills
@@ -53,7 +54,8 @@ has a verified source.
 
 ## Required checks
 
-1. `npm test` for the CSV parser and any script change.
+1. `npm run lint` (`astro check`) and `npm test` for the CSV parser and any
+   script change. CI runs both plus the build on every PR.
 2. `npm run build` for every site change. It regenerates tokens, builds, and runs
    `scripts/check-dist.mjs`: every page needs a title, a description and exactly
    one `<h1>`; no internal link may be broken; no `href`/`src` may be `""` or `#`.
@@ -89,7 +91,8 @@ has a verified source.
 - Conventional commits (`feat`, `fix`, `docs`, `chore`, `refactor`, `style`,
   `test`, `build`). Never commit on `main`.
 - Never deploy to live, or change DNS or the custom domain, without the owner's
-  go-ahead in the current session. A preview channel is the default.
+  go-ahead in the current session. A preview channel is the default. Merging to
+  `main` releases live through CI, so merging a PR needs the same go-ahead.
 
 ## Communicating with the maintainer
 
