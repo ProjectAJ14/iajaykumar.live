@@ -41,7 +41,7 @@ memory are not evidence.
 | New or changed component | `src/CLAUDE.md`; the matching `design-system/components/<Name>/README.md` if behavior diverges |
 | Tokens, color, type, motion or `bundle.css` | `design-system/README.md`, `Motion.md`, `.claude/skills/coral-studio/SKILL.md` |
 | CSV columns or adapter rules | `content/CLAUDE.md`, `.claude/skills/add-content/SKILL.md`, `docs/CONTENT_AND_SOURCES.md` |
-| Assets or derivatives | `public/assets/README.md`, `design-system/assets/<Group>/README.md` |
+| Assets or derivatives | `public/assets/README.md`, `design-system/assets/<Group>/README.md`; Ajay avatar references in `public/assets/portraits/CLAUDE.md` |
 | Scripts, build or checks | `README.md` quick start, this file's required checks, `.claude/skills/verify-site/SKILL.md` |
 | Hosting or deploy | `firebase.json`, `.claude/skills/deploy/SKILL.md`, `README.md` |
 | Claude settings or hooks | `.claude/settings.json`, `.claude/hooks/`, this file |
