@@ -23,7 +23,7 @@ export declare function TalkCard(props: TalkCardProps): React.ReactElement;
 export interface Lesson { title: string; href: string; kind?: 'Article' | 'Video' | 'Workshop' | 'Talk' }
 export interface LearningPathCardProps { index?: number; title: string; summary?: string; lessons?: Lesson[] }
 export declare function LearningPathCard(props: LearningPathCardProps): React.ReactElement;
-export interface ProjectCardProps { name: string; problem?: string; outcome?: string; role?: 'Creator' | 'Maintainer' | 'Contributor' | string; tags?: string[]; links?: { demo?: string; docs?: string; source?: string } }
+export interface ProjectCardProps { name: string; problem?: string; outcome?: string; role?: 'Creator' | 'Maintainer' | 'Contributor' | string; tags?: string[]; links?: { demo?: string; site?: string; docs?: string; source?: string } }
 export declare function ProjectCard(props: ProjectCardProps): React.ReactElement;
 export interface ArticleCardProps { title: string; href: string; topic?: string; date?: string; source?: string }
 export declare function ArticleCard(props: ArticleCardProps): React.ReactElement;

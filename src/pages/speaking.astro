@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import TalkCard from '../components/TalkCard.astro';
+import { talks, LINKS, speakingMailto } from '../content';
+import { speakingTopics } from '../content/paths';
+---
+<Base title="Speaking" description="Invite Ajay Kumar to speak about full-stack product building, Flutter and mobile architecture, and developer tools and AI." current="Speaking">
+  <div class="container">
+    <header class="page-head intro">
+      <div>
+        <h1 class="page-title">Speaking</h1>
+        <p class="page-lede">I give talks and hands-on workshops about building real products, from the first commit to the tools that keep a team fast. If your event or team wants a practical session, I would love to hear about it.</p>
+        <div class="actions">
+          <Button href={speakingMailto}>Email a speaking invitation</Button>
+          <Button href={LINKS.linkedin} variant="secondary">Message me on LinkedIn</Button>
+        </div>
+        <p class="cs-muted email">Or write to <a class="inline-link" href={speakingMailto}>{LINKS.email}</a>.</p>
+      </div>
+      <img class="section-art" src="/assets/web/studio-microphone.webp" alt="" loading="lazy" />
+    </header>
+
+    <section class="section" aria-labelledby="topics-title">
+      <div class="section-head">
+        <h2 class="section-title" id="topics-title">Topics</h2>
+      </div>
+      <div class="grid-3">
+        {speakingTopics.map((t) => (
+          <div class="cs-card">
+            <h3 class="cs-card-title">{t.title}</h3>
+            <p class="cs-muted">{t.summary}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="talks-title">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title" id="talks-title">Talks and workshops</h2>
+          <p class="cs-muted">Sessions I have given. Ask about any of them, or a new one shaped for your audience.</p>
+        </div>
+      </div>
+      <div class="grid-3">
+        {talks.map((t) => <TalkCard title={t.title} topic={t.topic} event={t.event} date={t.date} recordingUrl={t.recordingUrl} />)}
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: var(--space-4); }
+  .actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
+  .email { margin-top: var(--space-2); }
+  @media (max-width: 767px) { .intro { grid-template-columns: 1fr; } }
+</style>

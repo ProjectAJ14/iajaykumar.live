@@ -1,0 +1,53 @@
+---
+import '../styles/tokens.css';
+import '../../design-system/components/bundle.css';
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+interface Props { title: string; description: string; current?: string; }
+const { title, description, current } = Astro.props;
+const fullTitle = title === 'Home' ? 'Ajay Kumar — engineer, builder, and teacher' : `${title} — Ajay Kumar`;
+const canonical = new URL(Astro.url.pathname.replace(/\/index$|\.html$/, '') || '/', Astro.site);
+const ogImage = new URL('/assets/og-card.jpg', Astro.site);
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#101827" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ajay Kumar" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script is:inline>
+      // Runs before paint so the stored theme never flashes. Studio (dark) is the default.
+      try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <SiteHeader current={current} />
+    <main id="main"><slot /></main>
+    <SiteFooter />
+    <script is:inline>
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest('[data-theme-toggle]')) return;
+        var root = document.documentElement, next = root.dataset.theme === 'light' ? 'dark' : 'light';
+        root.dataset.theme = next;
+        try { localStorage.setItem('theme', next); } catch (err) {}
+        document.querySelectorAll('[data-theme-toggle]').forEach(function (b) { b.setAttribute('aria-label', next === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'); });
+      });
+      document.querySelectorAll('[data-theme-toggle]').forEach(function (b) { b.setAttribute('aria-label', document.documentElement.dataset.theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'); });
+    </script>
+  </body>
+</html>

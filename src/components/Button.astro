@@ -1,0 +1,10 @@
+---
+import Arrow from './Arrow.astro';
+import { ext } from './ext';
+interface Props { href?: string; variant?: 'primary' | 'secondary' | 'ghost'; arrow?: boolean; class?: string; type?: 'button' | 'submit'; }
+const { href, variant = 'primary', arrow, class: extra, type = 'button' } = Astro.props;
+const cls = ['cs-btn', `cs-btn-${variant}`, extra].filter(Boolean).join(' ');
+---
+{href
+  ? <a class={cls} href={href} {...ext(href)}><slot />{arrow && <Arrow />}</a>
+  : <button class={cls} type={type}><slot />{arrow && <Arrow />}</button>}

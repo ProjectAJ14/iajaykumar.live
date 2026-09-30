@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import LearningPathCard from '../components/LearningPathCard.astro';
+import Button from '../components/Button.astro';
+import { talks, courses, speakingMailto } from '../content';
+import { learningPaths } from '../content/paths';
+
+const workshops = talks.filter((t) => /workshop/i.test(t.title));
+---
+<Base title="Learn" description="Learning paths from Ajay Kumar: build full-stack products, Flutter and mobile, and developer tools, each linking real articles." current="Learn">
+  <header class="container page-head learn-head">
+    <div>
+      <h1 class="page-title">Learn</h1>
+      <p class="page-lede">Three paths through what I have written so far. Each one starts with the problem it helps you solve, then points to the articles that teach it.</p>
+    </div>
+    <img class="section-art" src="/assets/web/lesson-cards.webp" width="400" height="267" alt="" />
+  </header>
+
+  <section class="container section" aria-labelledby="paths-title">
+    <div class="section-head"><h2 class="section-title" id="paths-title">Learning paths</h2></div>
+    <div class="grid-3">
+      {learningPaths.map((p, i) => <LearningPathCard index={i + 1} title={p.title} summary={p.summary} lessons={p.lessons} />)}
+    </div>
+  </section>
+
+  {workshops.length > 0 && (
+    <section class="container section" aria-labelledby="workshops-title">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title" id="workshops-title">Workshops</h2>
+          <p class="cs-muted">Hands-on sessions I have run. Recordings and materials are not published yet; ask if you would like one for your team or event.</p>
+        </div>
+      </div>
+      <ul class="workshops">
+        {workshops.map((w) => <li class="cs-card"><span class="cs-tag">{w.topic}</span><span class="workshop-title">{w.title}</span></li>)}
+      </ul>
+      <div class="workshop-action"><Button href={speakingMailto} variant="secondary">Email me about a workshop</Button></div>
+    </section>
+  )}
+
+  {courses.length > 0 && (
+    <section class="container section" aria-labelledby="courses-title">
+      <div class="section-head"><h2 class="section-title" id="courses-title">Courses</h2></div>
+      <div class="grid-3">
+        {courses.map((c) => <LearningPathCard title={c.title} summary={c.summary} lessons={[{ title: `Open ${c.title}`, href: c.canonical_url, kind: 'Course' }]} />)}
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+  .learn-head { display: flex; align-items: end; justify-content: space-between; gap: var(--space-4); }
+  .workshops { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+  .workshop-title { font: 700 20px/1.35 var(--font-sans); }
+  .workshop-action { margin-top: var(--space-4); }
+  @media (max-width: 767px) {
+    .learn-head { flex-direction: column; align-items: start; }
+    .workshops { grid-template-columns: 1fr; }
+  }
+</style>

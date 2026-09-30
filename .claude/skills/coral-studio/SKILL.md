@@ -17,7 +17,7 @@ Read, in this order, only what the task needs:
 4. `design-system/Motion.md` for any animation; `design-system/Pages.md` for page composition.
 5. `design-system/assets/<Group>/README.md` for images. Files themselves live in `public/assets/`.
 
-Components: Button, TopicChip, ThemeToggle, SiteHeader, SiteFooter, Hero, MediaFeature, TalkCard, LearningPathCard, ProjectCard, ArticleCard. Reference implementation: `design-system/components/bundle.js` + `bundle.css` (global `window.CoralStudio`, React 18). The site's framework is not chosen yet; port these faithfully, keeping class behavior and token use, rather than inventing new variants.
+Components: Button, TopicChip, ThemeToggle, SiteHeader, SiteFooter, Hero, MediaFeature, TalkCard, LearningPathCard, ProjectCard, ArticleCard. Reference implementation: `design-system/components/bundle.js` + `bundle.css` (global `window.CoralStudio`, React 18). The site is Astro: component markup is ported to `src/components/*.astro`, and `src/layouts/Base.astro` imports `bundle.css` itself, live (after `tokens.css`, before `src/styles/global.css`, which holds only site-layout utilities). Editing `bundle.css` changes the live site; there is no copy to keep in sync. The `.astro` markup must emit the bundle's class names; don't invent new variants — change the reference first when one is needed.
 
 ## Rules that are easy to get wrong
 
@@ -53,4 +53,4 @@ The same system is published as a Design System artifact: https://claude.ai/arti
 
 ## Open items (don't invent answers)
 
-Hero copy approval; direct YouTube video URLs and thumbnails; talk events, dates, recordings, slides; ProjectCard problem lines for Eklavya and JSON Viewer; confirmed roles for organization repos; platform logos for the footer; first course or audio series.
+The hero copy was approved as-is by the owner on 2026-09-29. Still open: direct YouTube video URLs and thumbnails; talk events, dates, recordings, slides; ProjectCard problem lines for Eklavya and JSON Viewer; confirmed roles for organization repos; platform logos for the footer; first course or audio series.

@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import Arrow from '../components/Arrow.astro';
+import MediaFeature from '../components/MediaFeature.astro';
+import { videos, LINKS } from '../content';
+
+// Lights up automatically when content/videos.csv gets rows; until then the channel is the feature.
+const feature = videos.find((v) => v.featured) ?? videos[0];
+const rest = videos.filter((v) => v !== feature);
+---
+<Base title="Watch" description="Videos from Ajay Kumar's YouTube channel: practical lessons from building software." current="Watch">
+  <div class="container">
+    <header class="page-head">
+      <h1 class="page-title">Watch</h1>
+      <p class="page-lede">Practical lessons from building software, on video. Every video opens on YouTube.</p>
+    </header>
+
+    <section class="section" aria-label="Featured">
+      <div class="feature">
+        {feature
+          ? <MediaFeature href={feature.href} title={feature.title} topic={feature.topic} duration={feature.duration} thumbnailSrc={feature.thumbnail} />
+          : <MediaFeature href={LINKS.youtube} title="Videos on my YouTube channel" topic="YouTube" summary="Browse everything I have published on the channel." cta="Watch on YouTube" />}
+        <img class="section-art" src="/assets/web/video-camera.webp" alt="" loading="lazy" />
+      </div>
+    </section>
+
+    {rest.length > 0 && (
+      <section class="section" aria-labelledby="videos-title">
+        <div class="section-head">
+          <h2 class="section-title" id="videos-title">More videos</h2>
+          <a class="cs-link" href={LINKS.youtube} target="_blank" rel="noopener noreferrer">Watch everything on YouTube<Arrow /></a>
+        </div>
+        <div class="grid-3">
+          {rest.map((v) => <MediaFeature href={v.href} title={v.title} topic={v.topic} duration={v.duration} thumbnailSrc={v.thumbnail} />)}
+        </div>
+      </section>
+    )}
+  </div>
+</Base>
+
+<style>
+  .feature { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: var(--space-4); max-width: 900px; }
+  @media (max-width: 767px) { .feature { grid-template-columns: 1fr; } }
+</style>

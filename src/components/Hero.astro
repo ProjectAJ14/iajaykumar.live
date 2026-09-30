@@ -1,0 +1,30 @@
+---
+import Button from './Button.astro';
+type Action = { label: string; href: string };
+interface Props {
+  title: string; accentWord?: string; eyebrow?: string; lede?: string;
+  primary?: Action; secondary?: Action;
+  avatarSrc?: string; avatarAlt?: string; backdropSrc?: string; propSrc?: string;
+}
+const p = Astro.props;
+const i = p.accentWord ? p.title.indexOf(p.accentWord) : -1;
+const [before, after] = i < 0 ? [p.title, ''] : [p.title.slice(0, i), p.title.slice(i + p.accentWord!.length)];
+---
+<!-- The backdrop is a night scene: over it the hero keeps Studio (dark) colors in both themes. -->
+<section class="cs-hero" data-theme={p.backdropSrc ? 'dark' : undefined} style={p.backdropSrc ? `background-image:url("${p.backdropSrc}")` : undefined}>
+  <div class="cs-hero-copy">
+    {p.eyebrow && <p class="cs-eyebrow">{p.eyebrow}</p>}
+    <h1 class="cs-hero-title">{before}{i >= 0 && <em class="cs-accent-word">{p.accentWord}</em>}{after}</h1>
+    {p.lede && <p class="cs-hero-lede">{p.lede}</p>}
+    <div class="cs-hero-actions">
+      {p.primary && <Button href={p.primary.href}>{p.primary.label}</Button>}
+      {p.secondary && <Button href={p.secondary.href} variant="secondary">{p.secondary.label}</Button>}
+    </div>
+    <span class="cs-cue" aria-hidden="true"></span>
+  </div>
+  <div class="cs-hero-art">
+    <div class="cs-hero-light" aria-hidden="true"></div>
+    {p.avatarSrc && <img class="cs-hero-avatar" src={p.avatarSrc} alt={p.avatarAlt ?? 'Illustration of Ajay Kumar smiling in a coral-orange shirt and pointing left.'} width="315" height="420" fetchpriority="high" />}
+    {p.propSrc && <img class="cs-hero-prop" src={p.propSrc} alt="" loading="lazy" />}
+  </div>
+</section>

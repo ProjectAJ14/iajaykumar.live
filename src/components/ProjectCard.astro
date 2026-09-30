@@ -1,0 +1,18 @@
+---
+import Arrow from './Arrow.astro';
+import { ext } from './ext';
+interface Props { name: string; role?: string; problem?: string; outcome?: string; tags?: string[]; links?: { demo?: string; docs?: string; site?: string; source?: string }; }
+const p = Astro.props;
+const L = p.links ?? {};
+const links = ([['demo', 'Demo'], ['site', 'Website'], ['docs', 'Docs'], ['source', 'Source']] as const).filter(([k]) => L[k]).map(([k, label]) => ({ href: L[k]!, label }));
+---
+<article class="cs-card cs-project">
+  <div class="cs-project-head">
+    <h3 class="cs-card-title">{p.name}</h3>
+    {p.role && <span class="cs-role">{p.role}</span>}
+  </div>
+  {p.problem && <p>{p.problem}</p>}
+  {p.outcome && <p class="cs-muted">{p.outcome}</p>}
+  {p.tags?.length ? <p class="cs-stack">{p.tags.join(' · ')}</p> : null}
+  {links.length > 0 && <div class="cs-actions">{links.map((l) => <a class="cs-link" href={l.href} {...ext(l.href)}>{l.label}<Arrow /></a>)}</div>}
+</article>

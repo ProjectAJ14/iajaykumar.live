@@ -1,0 +1,19 @@
+---
+import Arrow from './Arrow.astro';
+import { ext } from './ext';
+interface Props { title: string; topic: string; event?: string; date?: string; recordingUrl?: string; slidesUrl?: string; }
+const p = Astro.props;
+const actions = [
+  p.recordingUrl && { href: p.recordingUrl, label: 'Watch recording' },
+  p.slidesUrl && { href: p.slidesUrl, label: 'View slides' },
+].filter(Boolean) as { href: string; label: string }[];
+---
+<article class="cs-card cs-talk" tabindex={actions.length ? undefined : 0}>
+  <div class="cs-talk-head">
+    <span class="cs-tag">{p.topic}</span>
+    <span class="cs-wave" aria-hidden="true"><i></i><i></i><i></i></span>
+  </div>
+  <h3 class="cs-card-title">{p.title}</h3>
+  {(p.event || p.date) && <p class="cs-meta">{[p.event, p.date].filter(Boolean).join(' · ')}</p>}
+  {actions.length > 0 && <div class="cs-actions">{actions.map((a) => <a class="cs-link" href={a.href} {...ext(a.href)}>{a.label}<Arrow /></a>)}</div>}
+</article>
